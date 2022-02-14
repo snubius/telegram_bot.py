@@ -31,7 +31,7 @@ def welcome(message):
     markup.add(item1, item2, item3)
 
     bot.send_message(message.chat.id,
-                     "Добро пожаловать, {0.first_name}!\nЯ - <b>{1.first_name}</b>, бот созданный чтобы быть подопытным котиком.".format(
+                     "Добро пожаловать, {0.first_name}!\nЯ - <b>{1.first_name}</b>, бот созданный чтобы быть подопытным кроликом.".format(
                          message.from_user, bot.get_me()),
                      parse_mode='html', reply_markup=markup)
 
@@ -50,8 +50,31 @@ def dududu(message):
             markup.add(item1, item2)
 
             bot.send_message(message.chat.id, 'Отлично, сам как?', reply_markup=markup)
-        else:
-            bot.send_message(message.chat.id, 'Я не знаю что ответить 😢')
+
+
+@bot.message_handler(content_types=['🔭 гороскоп'])
+def goroscop(message2):
+        if message2.text == '🔭 гороскоп':
+            markup = types.InlineKeyboardMarkup(row_width=13)
+            item1 = types.InlineKeyboardButton("♈ Овен", callback_data='♈ Овен')
+            item2 = types.InlineKeyboardButton("♉ Телец", callback_data='♉ Телец')
+            item3 = types.InlineKeyboardButton("♊ Близнецы", callback_data='♊ Близнецы')
+            item4 = types.InlineKeyboardButton("♋ Рак", callback_data='♋ Рак')
+            item5 = types.InlineKeyboardButton("♌ Лев", callback_data='♌ Лев')
+            item6 = types.InlineKeyboardButton("♍ Дева", callback_data='♍ Дева')
+            item7 = types.InlineKeyboardButton("♎ Весы", callback_data='♎ Весы')
+            item8 = types.InlineKeyboardButton("♏ Скорпион", callback_data='♏ Скорпион')
+            item9 = types.InlineKeyboardButton("⛎ Змееносец", callback_data='⛎ Змееносец')
+            item10 = types.InlineKeyboardButton("♐ Стрелец", callback_data='♐ Стрелец')
+            item11 = types.InlineKeyboardButton( '♑ Козерог', callback_data=' ♑ Козерог')
+            item12= types.InlineKeyboardButton("♒ Водолей", callback_data='♒ Водолей')
+            item13 = types.InlineKeyboardButton("♓ Рыбы", callback_data='♓ Рыбы')
+
+            markup.add(item1, item2, item3, item4, item5, item6, item7, item8, item9, item10, item11, item12, item13)
+
+            bot.send_message(message2.chat.id, 'выбери свой знак зодиака?', reply_markup=markup)
+
+
 
 @bot.callback_query_handler(func=lambda call: True)
 def callback_inline(call):
@@ -69,19 +92,51 @@ def callback_inline(call):
 
     except Exception as e:
         print(repr(e))
+@bot.callback_query_handler(func=lambda call: True)
+def callback_inline(call):
+    try:
+        if call.message:
+            if call.data == '♈ Овен':
+                bot.send_message(call.message.chat.id, 'Вот и отличненько 😊')
+            elif call.data == '♉ Телец':
+                bot.send_message(call.message.chat.id, 'Бывает 😢')
+            if call.data == '♊ Близнецы':
+                bot.send_message(call.message.chat.id, 'Вот и отличненько 😊')
+            elif call.data == '♋ Рак':
+                bot.send_message(call.message.chat.id, 'Бывает 😢')
+            if call.data == '♌ Лев':
+                bot.send_message(call.message.chat.id, 'Вот и отличненько 😊')
+            elif call.data == '♍ Дева':
+                bot.send_message(call.message.chat.id, 'Бывает 😢')
+            if call.data == '♎ Весы':
+                    bot.send_message(call.message.chat.id, 'Вот и отличненько 😊')
+            elif call.data == '♏ Скорпион':
+                    bot.send_message(call.message.chat.id, 'Бывает 😢')
+            elif call.data == '⛎ Змееносец':
+                bot.send_message(call.message.chat.id, 'Бывает 😢')
+            if call.data == '♐ Стрелец':
+                bot.send_message(call.message.chat.id, 'Вот и отличненько 😊')
+            elif call.data == '♑ Козерог':
+                bot.send_message(call.message.chat.id, 'Бывает 😢')
+            if call.data == '♒ Водолей':
+                bot.send_message(call.message.chat.id, 'Вот и отличненько 😊')
+            elif call.data == '♓ Рыбы':
+                bot.send_message(call.message.chat.id, 'Бывает 😢')
+            bot.edit_message_text(chat_id=call.message.chat.id, message_id=call.message.message_id,
+                                  text="😊 Как дела?",
+                                  reply_markup=None)
+            bot.answer_callback_query(callback_query_id=call.id, show_alert=False,
+                text="ЭТО ТЕСТОВОЕ УВЕДОМЛЕНИЕ!!11")
+
+    except Exception as e:
+        print(repr(e))
+
 
 
 @bot.message_handler (commands= ["random_num"])
 def random_num(message):
     num = random.randint(1, 10)
     bot.send_message(message.chat.id, str(num))
-
-
-
-
-
-
-
 
 #textbot.py
 @bot.message_handler(content_types=['text'])
