@@ -48,13 +48,9 @@ def dududu(message):
             item2 = types.InlineKeyboardButton("Не очень", callback_data='bad')
 
             markup.add(item1, item2)
-
             bot.send_message(message.chat.id, 'Отлично, сам как?', reply_markup=markup)
 
-
-@bot.message_handler(content_types=['🔭 гороскоп'])
-def goroscop(message2):
-        if message2.text == '🔭 гороскоп':
+        elif message.text == '🔭 гороскоп':
             markup = types.InlineKeyboardMarkup(row_width=13)
             item1 = types.InlineKeyboardButton("♈ Овен", callback_data='♈ Овен')
             item2 = types.InlineKeyboardButton("♉ Телец", callback_data='♉ Телец')
@@ -72,7 +68,7 @@ def goroscop(message2):
 
             markup.add(item1, item2, item3, item4, item5, item6, item7, item8, item9, item10, item11, item12, item13)
 
-            bot.send_message(message2.chat.id, 'выбери свой знак зодиака?', reply_markup=markup)
+            bot.send_message(message.chat.id, 'выбери свой знак зодиака?', reply_markup=markup)
 
 
 
@@ -100,25 +96,25 @@ def callback_inline(call):
                 bot.send_message(call.message.chat.id, 'Вот и отличненько 😊')
             elif call.data == '♉ Телец':
                 bot.send_message(call.message.chat.id, 'Бывает 😢')
-            if call.data == '♊ Близнецы':
+            elif call.data == '♊ Близнецы':
                 bot.send_message(call.message.chat.id, 'Вот и отличненько 😊')
             elif call.data == '♋ Рак':
                 bot.send_message(call.message.chat.id, 'Бывает 😢')
-            if call.data == '♌ Лев':
+            elif call.data == '♌ Лев':
                 bot.send_message(call.message.chat.id, 'Вот и отличненько 😊')
             elif call.data == '♍ Дева':
                 bot.send_message(call.message.chat.id, 'Бывает 😢')
-            if call.data == '♎ Весы':
+            elif call.data == '♎ Весы':
                     bot.send_message(call.message.chat.id, 'Вот и отличненько 😊')
             elif call.data == '♏ Скорпион':
                     bot.send_message(call.message.chat.id, 'Бывает 😢')
             elif call.data == '⛎ Змееносец':
                 bot.send_message(call.message.chat.id, 'Бывает 😢')
-            if call.data == '♐ Стрелец':
+            elif call.data == '♐ Стрелец':
                 bot.send_message(call.message.chat.id, 'Вот и отличненько 😊')
             elif call.data == '♑ Козерог':
                 bot.send_message(call.message.chat.id, 'Бывает 😢')
-            if call.data == '♒ Водолей':
+            elif call.data == '♒ Водолей':
                 bot.send_message(call.message.chat.id, 'Вот и отличненько 😊')
             elif call.data == '♓ Рыбы':
                 bot.send_message(call.message.chat.id, 'Бывает 😢')
@@ -128,8 +124,10 @@ def callback_inline(call):
             bot.answer_callback_query(callback_query_id=call.id, show_alert=False,
                 text="ЭТО ТЕСТОВОЕ УВЕДОМЛЕНИЕ!!11")
 
-    except Exception as e:
-        print(repr(e))
+
+    except Exception as e:\
+                print(repr(e))
+
 
 
 
